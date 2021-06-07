@@ -57,7 +57,6 @@ class OpenImportDialog(QtWidgets.QDialog):
         self.open_rb = QtWidgets.QRadioButton("Open")
         self.open_rb.setChecked(True)
         self.import_rb = QtWidgets.QRadioButton("Import")
-        self.reference_rb = QtWidgets.QRadioButton("Reference")
 
         self.force_cb = QtWidgets.QCheckBox("Force")
 
@@ -90,7 +89,6 @@ class OpenImportDialog(QtWidgets.QDialog):
         radio_btn_layout = QtWidgets.QHBoxLayout()
         radio_btn_layout.addWidget(self.open_rb)
         radio_btn_layout.addWidget(self.import_rb)
-        radio_btn_layout.addWidget(self.reference_rb)
 
         apply_btn_layout = QtWidgets.QHBoxLayout()
         apply_btn_layout.addStretch()
