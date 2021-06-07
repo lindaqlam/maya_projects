@@ -40,7 +40,13 @@ class OpenImportDialog(QtWidgets.QDialog):
 
         self.setWindowTitle("Open/Import/Reference")
         self.setMinimumSize(300, 300)
-        self.setWindowFlags(self.windowFlags() ^ QtCore.Qt.WindowContextHelpButtonHint)
+
+        if cmds.about(ntOS=True):
+            self.setWindowFlags(self.windowFlags() ^ QtCore.Qt.WindowContextHelpButtonHint)
+
+        elif cmds.about(macOS=True):
+            self.setWindowFlags(QtCore.Qt.Tool)
+
 
         self.create_widgets()
         self.create_layout()
@@ -196,6 +202,7 @@ class OpenImportDialog(QtWidgets.QDialog):
         else:
             file_type = "mayaBinary"
             print "mayaBinary"
+
 
         location = self.location_le.text()[7:]
         file_name = self.save_le.text()
