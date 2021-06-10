@@ -9,7 +9,7 @@ from shiboken2 import wrapInstance
 class HelperMethods(object):
 
     @classmethod
-    def retime_keys(cls, retime_value, incremental, move_to_next):
+    def retime_keys(cls, retime_value, move_to_next):
         range_start_time, range_end_time = cls.get_selected_range()
         start_keyframe_time = cls.get_start_keyframe_time(range_start_time)
         last_keyframe_time = cls.get_last_keyframe_time()
@@ -20,17 +20,10 @@ class HelperMethods(object):
         while current_time != last_keyframe_time:
             next_keyframe_time = cls.find_keyframe("next", current_time)
 
-            if incremental:
-                time_diff = next_keyframe_time - current_time
-                if current_time < range_end_time:
-                    time_diff += retime_value
-                    if time_diff < 1:
-                        time_diff = 1
+            if current_time < range_end_time:
+                time_diff = retime_value
             else:
-                if current_time < range_end_time:
-                    time_diff = retime_value
-                else:
-                    time_diff = next_keyframe_time - current_time
+                time_diff = next_keyframe_time - current_time
 
             new_keyframe_times.append(new_keyframe_times[-1] + time_diff)
             current_time = next_keyframe_time
